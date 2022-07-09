@@ -1,9 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import styles from '../styles/Home.module.css'
+import { createUser, deleteUser, getAllUser, getOneUser, updateUser } from '../utils/getUser'
 
 const Home: NextPage = () => {
+
+  // useEffect(() => { getOneUser('users', '1') }, [])
+  useEffect(() => { getAllUser() }, [])
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +17,18 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
+      <div onClick={() => { deleteUser('users', 'users') }}>hello</div>
+
+
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1 onClick={() => createUser('users', {
+          fistname: 'hello',
+          lastname: "data",
+          nickname: 'nutt',
+          no: 2,
+          studentID: 'dasas',
+        })} className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
@@ -23,8 +38,14 @@ const Home: NextPage = () => {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
+          <a className={styles.card}>
+            <h2 onClick={() => updateUser('users', '2', {
+              fistname: 'hello',
+              lastname: "data",
+              nickname: 'nuttyssss',
+              no: 2,
+              studentID: 'dasas',
+            })}>Documentation &rarr;</h2>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
